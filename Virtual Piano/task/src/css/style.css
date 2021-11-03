@@ -1,0 +1,28 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: cornflowerblue;
+}
+
+.container {
+    height: 50vw;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.key {
+    height: 15vw;
+    width: 5vw;
+    display: inline-block;
+
+    background-color: white;
+    border: 0.5vw outset darkgrey;
+    font-size: 1.5vw;
+    padding-top: 5vw;
+    text-align: center;
+    vertical-align: center;
+}
