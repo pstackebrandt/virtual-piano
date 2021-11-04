@@ -1,12 +1,55 @@
 const path = require('path');
 const pagePath = 'file://' + path.resolve(__dirname, '../src/index.html');
-const {StageTest, correct, wrong} = require('hs-test-web');
+const {StageTest, correct, wrong} = require("hs-test-web")
 
 class Test extends StageTest {
 
     page = this.getPage(pagePath)
 
     tests = [
+
+        this.page.execute(async () => {
+            this.realLog = console.log;
+            this.userPrinted = [];
+            console.log = (x) => {
+                this.userPrinted.push(x);
+                this.realLog(x);
+            };
+            return correct()
+        }),
+
+        // Test #1 - check all keys are pressed
+        // TODO FIXED 09.10.2020
+
+        this.page.execute(() => {
+            let keys = ['a', 's', 'd', 'f', 'g', 'h', 'j'];
+
+            for (let key of keys) {
+                this.realLog("Before: " + JSON.stringify(this.userPrinted));
+                this.press(key);
+                this.realLog("After: " + JSON.stringify(this.userPrinted));
+
+                if (this.userPrinted.length !== 1) {
+                    return wrong(
+                        `When the user presses a key, you should log a single message, ` +
+                        `found ${this.userPrinted.length} messages`
+                    )
+                }
+
+                let elem = this.userPrinted.pop();
+                if (!elem.toString().toLowerCase().includes(`'${key}'`)) {
+                    return wrong(
+                        `When the user pressed a key "${key}", ` +
+                        `The output message must include '${key}'\n` +
+                        `You printed:\n` +
+                        `"${elem}"`
+                    );
+                }
+            }
+
+            return correct()
+        }),
+        // Test #2 - check div element with class container + 7 elements inside
         this.page.execute(() => {
             let containerElements = document.getElementsByClassName('container');
             if (containerElements.length === 0) {
@@ -34,6 +77,8 @@ class Test extends StageTest {
                 correct() :
                 wrong(`Div with class 'container' should contain 7 elements, found: ${len}`)
         }),
+
+        // Test #3 - check if all 7 elements are <kbd> elements
         this.page.execute(() => {
             let i = 0;
             for (let elem of this.innerDivElements) {
@@ -45,6 +90,8 @@ class Test extends StageTest {
             }
             return correct();
         }),
+
+        // Test #4 - check if all keys are presented
         this.page.execute(() => {
             let expectedKeySet = new Set();
 
@@ -73,6 +120,8 @@ class Test extends StageTest {
 
             return correct();
         }),
+
+        // Test #5 - check if all 7 elements contain a single letter
         this.page.execute(() => {
             let i = 0;
             for (let elem of this.innerDivElements) {
@@ -87,6 +136,25 @@ class Test extends StageTest {
             }
             return correct();
         }),
+
+        // Test 6 - Test if all 7 elements have the same top y-coordinate
+        // (located on a single horizontal line)
+        this.page.execute(() => {
+            let referenceTop = this.innerDivElements[0].getBoundingClientRect().top;
+            let i = 0;
+            for (let elem of this.innerDivElements) {
+                i++;
+                let currTop = elem.getBoundingClientRect().top;
+                if (currTop !== referenceTop) {
+                    return wrong(`Looks like element #1 and element #${i} ` +
+                        `don't have the same top y coordinate. ` +
+                        `All 7 elements should be located on a single horizontal line.`)
+                }
+            }
+            return correct();
+        }),
+
+        // Test 7 - Test if all 7 elements are located in the middle
         this.page.execute(() => {
             let width = window.innerWidth;
             let height = window.innerHeight;
@@ -120,20 +188,8 @@ class Test extends StageTest {
             }
             return correct();
         }),
-        this.page.execute(() => {
-            let referenceTop = this.innerDivElements[0].getBoundingClientRect().top;
-            let i = 0;
-            for (let elem of this.innerDivElements) {
-                i++;
-                let currTop = elem.getBoundingClientRect().top;
-                if (currTop !== referenceTop) {
-                    return wrong(`Looks like element #1 and element #${i} ` +
-                        `don't have the same top y coordinate. ` +
-                        `All 7 elements should be located on a single horizontal line.`)
-                }
-            }
-            return correct();
-        }),
+
+        // Test 8 - Test if all elements have border
         this.page.execute(() => {
             let i = 0;
             for (let elem of this.innerDivElements) {
@@ -146,6 +202,9 @@ class Test extends StageTest {
             }
             return correct()
         }),
+
+        // Test 9 - Test if all element's background color is white and
+        // body's background in not white
         this.page.execute(() => {
             function getRealColor(elem) {
                 while (elem) {
@@ -164,6 +223,7 @@ class Test extends StageTest {
                 return null;
             }
 
+            console.log(document.body)
             let bodyBack = getRealColor(document.body);
             if (bodyBack === null) {
                 return wrong("Looks like body's background color is not set. " +
@@ -186,11 +246,14 @@ class Test extends StageTest {
             }
             return correct()
         }),
+
+        // // Test 10 - Test width, height
         this.page.execute(() => {
             let i = 0;
             for (let elem of this.innerDivElements) {
                 i++;
                 let currDisplay = window.getComputedStyle(elem).display;
+
                 let currWidth = window.getComputedStyle(elem).width;
                 if (currWidth === 'auto') {
                     return wrong(`Looks like piano's element #${i} ` +
@@ -205,6 +268,8 @@ class Test extends StageTest {
             }
             return correct()
         }),
+
+        // // Test 11 - Checking key distances between keys
         this.page.execute(() => {
             let buttons = document.querySelectorAll('kbd');
 
@@ -235,12 +300,11 @@ class Test extends StageTest {
             return correct()
         })
     ]
-
 }
+
 
 jest.setTimeout(30000);
 test("Test stage", async () => {
         await new Test().runTests()
     }
 );
-
