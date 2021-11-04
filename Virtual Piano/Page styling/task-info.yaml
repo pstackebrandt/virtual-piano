@@ -264,9 +264,15 @@ files:
     );
 
   learner_created: false
+- name: src/scripts/script.js
+  visible: true
+  learner_created: true
+- name: src/css/style.css
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/101/stages/557/implement#comment
 status: Solved
 feedback:
   message: Congratulations!
-  time: Wed, 03 Nov 2021 14:07:12 UTC
-record: -1
+  time: Thu, 04 Nov 2021 17:45:53 UTC
+record: 2
