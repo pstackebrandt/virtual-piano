@@ -1,54 +1,50 @@
 const path = require('path');
 const pagePath = 'file://' + path.resolve(__dirname, '../src/index.html');
-const {StageTest, correct, wrong} = require("hs-test-web")
+const {StageTest, correct, wrong} = require('hs-test-web');
 
 class Test extends StageTest {
 
     page = this.getPage(pagePath)
 
     tests = [
-
         this.page.execute(async () => {
-            this.realLog = console.log;
-            this.userPrinted = [];
-            console.log = (x) => {
-                this.userPrinted.push(x);
-                this.realLog(x);
+            this.RealAudio = this.Audio;
+            this.audioCreated = [];
+            this.Audio = function (...args) {
+                audioCreated.push(args[0]);
+                return new RealAudio(...args);
             };
+
+            this.oldCreate = document.createElement;
+            document.createElement = function (...args) {
+                if (args[0].toLowerCase() === 'audio') {
+                    audioCreated.push(args[0]);
+                }
+                return oldCreate(...args);
+            }
             return correct()
         }),
-
-        // Test #1 - check all keys are pressed
-        // TODO FIXED 09.10.2020
-
+        // Test #1 - audio object creation check
         this.page.execute(() => {
             let keys = ['a', 's', 'd', 'f', 'g', 'h', 'j'];
-
-            for (let key of keys) {
-                this.realLog("Before: " + JSON.stringify(this.userPrinted));
+            keys.forEach(function (key) {
                 this.press(key);
-                this.realLog("After: " + JSON.stringify(this.userPrinted));
+            });
 
-                if (this.userPrinted.length !== 1) {
-                    return wrong(
-                        `When the user presses a key, you should log a single message, ` +
-                        `found ${this.userPrinted.length} messages`
-                    )
-                }
+            console.log(this.audioCreated)
 
-                let elem = this.userPrinted.pop();
-                if (!elem.toString().toLowerCase().includes(`'${key}'`)) {
-                    return wrong(
-                        `When the user pressed a key "${key}", ` +
-                        `The output message must include '${key}'\n` +
-                        `You printed:\n` +
-                        `"${elem}"`
-                    );
-                }
+            let audioElements = this.audioCreated.length;
+
+            if (audioElements === 0) {
+                return wrong(`Сannot find the audio objects. Note that audio objects must be created exactly when keys are pressed.`);
+            } else if (audioElements < keys.length) {
+                return wrong(`There are not enough audio objects, ${audioElements} of 7 objects were found`);
+            } else if (audioElements > keys.length) {
+                return wrong(`There are too many audio objects, found ${audioElements} instead of 12 objects`);
             }
-
-            return correct()
+            return correct();
         }),
+
         // Test #2 - check div element with class container + 7 elements inside
         this.page.execute(() => {
             let containerElements = document.getElementsByClassName('container');
@@ -78,20 +74,7 @@ class Test extends StageTest {
                 wrong(`Div with class 'container' should contain 7 elements, found: ${len}`)
         }),
 
-        // Test #3 - check if all 7 elements are <kbd> elements
-        this.page.execute(() => {
-            let i = 0;
-            for (let elem of this.innerDivElements) {
-                i++;
-                elem = elem.nodeName.toLowerCase();
-                if (elem !== 'kbd') {
-                    return wrong(`Element #${i} is not <kbd> element, it's <${elem}>`);
-                }
-            }
-            return correct();
-        }),
-
-        // Test #4 - check if all keys are presented
+        // Test #3 - check if all keys are presented
         this.page.execute(() => {
             let expectedKeySet = new Set();
 
@@ -120,6 +103,20 @@ class Test extends StageTest {
 
             return correct();
         }),
+
+        // Test #4 - check if all 7 elements are <kbd> elements
+        this.page.execute(() => {
+            let i = 0;
+            for (let elem of this.innerDivElements) {
+                i++;
+                elem = elem.nodeName.toLowerCase();
+                if (elem !== 'kbd') {
+                    return wrong(`Element #${i} is not <kbd> element, it's <${elem}>`);
+                }
+            }
+            return correct();
+        }),
+
 
         // Test #5 - check if all 7 elements contain a single letter
         this.page.execute(() => {
@@ -223,7 +220,6 @@ class Test extends StageTest {
                 return null;
             }
 
-            console.log(document.body)
             let bodyBack = getRealColor(document.body);
             if (bodyBack === null) {
                 return wrong("Looks like body's background color is not set. " +
@@ -247,7 +243,7 @@ class Test extends StageTest {
             return correct()
         }),
 
-        // // Test 10 - Test width, height
+        // Test 10 - Test width, height
         this.page.execute(() => {
             let i = 0;
             for (let elem of this.innerDivElements) {
@@ -269,7 +265,7 @@ class Test extends StageTest {
             return correct()
         }),
 
-        // // Test 11 - Checking key distances between keys
+        // Test 11 - Checking key distances between keys
         this.page.execute(() => {
             let buttons = document.querySelectorAll('kbd');
 

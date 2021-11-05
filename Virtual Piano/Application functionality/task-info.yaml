@@ -390,13 +390,8 @@ files:
     }
   learner_created: true
 feedback_link: https://hyperskill.org/projects/101/stages/558/implement#comment
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Error: Failed: "Wrong answer in test #2
-
-    When the user pressed a key \"a\", The output message must include 'a'
-    You printed:
-    \"code: KeyA, key: `a`\""
-  time: Thu, 04 Nov 2021 16:25:35 UTC
+  message: Congratulations!
+  time: Thu, 04 Nov 2021 17:53:03 UTC
 record: 3

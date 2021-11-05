@@ -324,6 +324,86 @@ files:
         }
     );
   learner_created: false
+- name: src/css/style.css
+  visible: true
+  text: |-
+    * {
+        font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+        background-color: cornflowerblue;
+    }
+
+    .container {
+        height: 50vw;
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+    .key {
+        height: 15vw;
+        width: 5vw;
+        display: inline-block;
+
+        background-color: white;
+        border: 0.5vw outset darkgrey;
+        font-size: 1.5vw;
+        padding-top: 5vw;
+        text-align: center;
+        vertical-align: center;
+    }
+  learner_created: true
+- name: src/scripts/script.js
+  visible: true
+  text: |
+    // const element = document.getElementsByTagName("body");
+    document.addEventListener("keydown", logKey);
+
+    function logKey(event) {
+        switch (event.key) {
+            case "a":
+            case "s":
+            case "d":
+            case "f":
+            case "g":
+            case "h":
+            case "j":
+                console.log(`The '${event.key.toUpperCase()}' is pressed.`);
+                break;
+            default:
+                console.log(`Unexpected key was pressed.`);
+                break;
+        }
+        // console.log(`code: ${event.code}, key: ${event.key}`);
+    }
+  learner_created: true
+- name: src/media/A.mp3
+  visible: true
+  learner_created: true
+- name: src/media/S.mp3
+  visible: true
+  learner_created: true
+- name: src/media/J.mp3
+  visible: true
+  learner_created: true
+- name: src/media/H.mp3
+  visible: true
+  learner_created: true
+- name: src/media/G.mp3
+  visible: true
+  learner_created: true
+- name: src/media/F.mp3
+  visible: true
+  learner_created: true
+- name: src/media/D.mp3
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/101/stages/559/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Fri, 05 Nov 2021 08:17:38 UTC
 record: -1
