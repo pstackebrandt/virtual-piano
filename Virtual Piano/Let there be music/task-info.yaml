@@ -401,9 +401,55 @@ files:
 - name: src/media/D.mp3
   visible: true
   learner_created: true
+- name: src/media/T.mp3
+  visible: true
+  learner_created: true
+- name: src/media/E.mp3
+  visible: true
+  learner_created: true
+- name: src/media/Y.mp3
+  visible: true
+  learner_created: true
+- name: src/media/W.mp3
+  visible: true
+  learner_created: true
+- name: src/media/U.mp3
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/101/stages/559/implement#comment
-status: Solved
+status: Failed
 feedback:
-  message: Congratulations!
-  time: Fri, 05 Nov 2021 08:17:38 UTC
+  message: |-
+    Error: Failed: "Error in test #1
+
+    Error: Protocol error (Target.attachToTarget): Target closed.
+        at /Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/puppeteer/lib/Connection.js:74:56
+        at new Promise (<anonymous>)
+        at Connection.send (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/puppeteer/lib/Connection.js:73:12)
+        at Connection.createSession (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/puppeteer/lib/Connection.js:153:36)
+        at Target._sessionFactory (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/puppeteer/lib/Browser.js:116:75)
+        at Target.page (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/puppeteer/lib/Target.js:73:32)
+        at Target.<anonymous> (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/puppeteer/lib/helper.js:112:23)
+        at Browser._createPageInContext (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/puppeteer/lib/Browser.js:177:31)
+        at processTicksAndRejections (internal/process/task_queues.js:95:5)
+        at Browser.newPage (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/hs-test-web/hstest/chrome/browser.js:24:22)
+        at Page.open (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/hs-test-web/hstest/environment/page.js:26:33)
+        at /Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/hs-test-web/hstest/environment/page.js:19:13
+        at PureJsApplicationRunner.test (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/hs-test-web/hstest/testing/runner/pure_js_application_runner.js:7:24)
+        at TestRun.test (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/hs-test-web/hstest/testing/test_run.js:28:16)
+        at Test._runTests (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/hs-test-web/hstest/stage/stageTest.js:68:32)
+        at Test.runTests (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/hs-test-web/hstest/stage/stageTest.js:89:9)
+        at Object.<anonymous> (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/Virtual Piano/task/hstest/test.js:304:9)
+      -- ASYNC --
+        at Browser.<anonymous> (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/puppeteer/lib/helper.js:111:15)
+        at Browser.newPage (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/hs-test-web/hstest/chrome/browser.js:24:41)
+        at Page.open (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/hs-test-web/hstest/environment/page.js:26:52)
+        at /Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/hs-test-web/hstest/environment/page.js:19:24
+        at PureJsApplicationRunner.test (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/hs-test-web/hstest/testing/runner/pure_js_application_runner.js:7:30)
+        at TestRun.test (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/hs-test-web/hstest/testing/test_run.js:28:34)
+        at Test._runTests (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/hs-test-web/hstest/stage/stageTest.js:68:46)
+        at processTicksAndRejections (internal/process/task_queues.js:95:5)
+        at Test.runTests (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/hs-test-web/hstest/stage/stageTest.js:89:9)
+        at Object.<anonymous> (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/Virtual Piano/task/hstest/test.js:304:9)"
+  time: Fri, 05 Nov 2021 10:06:31 UTC
 record: -1

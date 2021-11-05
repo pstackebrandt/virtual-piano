@@ -8,36 +8,33 @@ function playMyAudioFile(pathToFile) {
     } else {
         console.log(`Audio object can't play mp3!`);
     }
-    audio.setAttribute("controls", "controls");
-    document.body.appendChild(audio);
+    //audio.setAttribute("controls", "controls");
+    //document.body.appendChild(audio);
     audio.play();
 }
 
 function logKey(event) {
     switch (event.key) {
+        // white keys
         case "a":
-            // let audio = new Audio("media/Α.mp3");
-            //playAudio("media/Α.mp3");
-            playMyAudioFile("media/A.mp3");
-            break;
         case "s":
-            playMyAudioFile("media/S.mp3");
-            break;
         case "d":
-            playMyAudioFile("media/D.mp3");
-            break;
         case "f":
-            playMyAudioFile("media/F.mp3");
-            break;
         case "g":
-            playMyAudioFile("media/G.mp3");
-            break;
         case "h":
-            playMyAudioFile("media/H.mp3");
-            break;
         case "j":
-            playMyAudioFile("media/J.mp3");
+        // black keys
+        case "w":
+        case "e":
+        case "t":
+        case "y":
+        case "u":
+            playMyAudioFile(`media/${event.key.toUpperCase()}.mp3`);
             break;
+        case "z": // For german keyboard
+            playMyAudioFile(`media/Y.mp3`);
+            break;
+
             // console.log(`The '${event.key.toUpperCase()}' is pressed.`);
         default:
             console.log(`Unexpected key was pressed.`);
