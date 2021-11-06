@@ -135,10 +135,11 @@ footer p{
         position: relative;
         top: 2vw;
         width: auto;
+        margin-bottom: 6vw;
     }
 
     .container {
-        height: 50vh;
+        height: 50vw;
         width: 80vw;
     }
 
