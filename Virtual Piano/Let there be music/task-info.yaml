@@ -452,4 +452,4 @@ feedback:
         at Test.runTests (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/node_modules/hs-test-web/hstest/stage/stageTest.js:89:9)
         at Object.<anonymous> (/Users/pstackebr/code/web/jetbrains_academy/virtual-piano/Virtual Piano/task/hstest/test.js:304:9)"
   time: Fri, 05 Nov 2021 10:06:31 UTC
-record: -1
+record: 4

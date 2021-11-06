@@ -1,13 +1,42 @@
+/* display is optimized for desktop and phone */
 * {
     font-family: 'Roboto', sans-serif;
+    font-size: 2vw;
 }
 
 body {
     background-color: cornflowerblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    color: white;
+    font-size: 5vw;
+    width: auto;
+}
+
+.description {
+    position: relative;
+    top: 1vw;
+    font-size: 2.5vw;
+    max-width: 90vw;
+    /*position: relative;*/
+    /*top: 2vw;*/
+    width: auto;
 }
 
 .container {
-    height: 50vw;
+    height: 25vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,17 +73,17 @@ body {
 }
 
 .black-keys .key {
-    position: relative;
     background-color: black;
+    border: 0.5vw outset darkgrey;
     color: white;
-    height: 5vw;
     font-size: 1.4vw;
-    padding: 8vw 1vw 0 1vw;
+    height: 5vw;
     margin: 0 1vw 0 1vw;
+    padding: 8vw 1vw 0 1vw;
+    position: relative;
+    top: 14vw;
     width: 1.8vw;
     z-index: 10;
-    border: 0.5vw outset darkgrey;
-    top: 14vw;
 }
 
 .black-keys .key-w {
@@ -75,4 +104,105 @@ body {
 
 .black-keys .key-u {
     left: 1.4vw;
+}
+
+footer {
+    align-items: center;
+    display: flex;
+    font-size: 1.5vw;
+    flex-flow: wrap;
+    justify-content: space-around;
+    position: relative;
+    top: 8vw;
+}
+
+footer p{
+    padding: 1.5vw;
+}
+
+@media screen and (max-width: 500px) {
+    * {
+        font-size: 4vw;
+    }
+
+    h1 {
+        font-size: 9vw;
+    }
+
+    .description {
+        font-size: 5.5vw;
+        max-width: 80vw;
+        position: relative;
+        top: 2vw;
+        width: auto;
+    }
+
+    .container {
+        height: 50vh;
+        width: 80vw;
+    }
+
+    footer {
+        position: relative;
+        top: 15vw;
+    }
+
+    footer p, footer a {
+        font-size: 4.5vw;
+        padding: 0 1vw;
+    }
+
+    .key {
+    }
+
+    .white-keys {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .white-keys .key {
+        bottom: 10vw;
+        box-sizing: border-box;
+        height: 48vw;
+        font-size: 4vw;
+        padding-top: 34vw;
+        position: relative;
+        width: 11vw;
+    }
+
+    .black-keys {
+    }
+
+    .black-keys .key {
+        box-sizing: border-box;
+        position: relative;
+        height: 28vw;
+        font-size: 3vw;
+        padding: 12vw 2vw 0 2vw;
+        margin: 0 2.5vw 0 2.5vw;
+        width: 8vw;
+        border: 0.5vw outset darkgrey;
+        top: 18vw;
+    }
+
+    .black-keys .key-w {
+        right: 2.0vw;
+    }
+
+    .black-keys .key-e {
+        right: 3vw;
+    }
+
+    .black-keys .key-t {
+        left: 5.4vw;
+    }
+
+    .black-keys .key-y {
+        left: 3.4vw;
+    }
+
+    .black-keys .key-u {
+        left: 1.6vw;
+    }
 }
