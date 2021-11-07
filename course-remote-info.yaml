@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/315625/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Sat, 06 Nov 2021 10:45:13 UTC
+update_date: Sat, 06 Nov 2021 19:49:25 UTC
 stages:
 - id: 556
   step: 9022
@@ -53,6 +53,8 @@ topics:
     theory_id: 14922
   - title: Interface elements
     theory_id: 15253
+  - title: Colors
+    theory_id: 14914
   - title: Block-level elements
     theory_id: 7271
   - title: Inline Elements
@@ -156,7 +158,17 @@ topics:
   4:
   - title: Google Fonts
     theory_id: 7844
+  - title: Introduction to operating systems
+    theory_id: 9704
   - title: Positioning Properties
     theory_id: 8204
   - title: z-index
     theory_id: 11161
+  - title: Command line overview
+    theory_id: 8977
+  - title: Parameters and options
+    theory_id: 9746
+  - title: Introduction to Linux
+    theory_id: 9526
+  - title: Starting with Git
+    theory_id: 10894

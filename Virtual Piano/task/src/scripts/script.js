@@ -14,7 +14,7 @@ function playMyAudioFile(pathToFile) {
 }
 
 function logKey(event) {
-    switch (event.key) {
+    switch (event.key.toLowerCase()) {
         // white keys
         case "a":
         case "s":
